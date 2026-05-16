@@ -1,5 +1,5 @@
 // import function from refactor
-const { getInitials, createSlug, average, isPalindroma, findPostId } = require("./refactor-test.js");
+const { getInitials, createSlug, average, isPalindroma, findPostId, addPost, removePost } = require("./refactor-test.js");
 
 // function string manipolation
 
@@ -21,6 +21,20 @@ describe('manipolazione stringhe', () => {
     })
 })
 
+// CREAZIONE OGGETTO 
+let posts;
+
+beforeEach(() => {
+    posts = [
+        { id: 1, title: "caoitolo 1", slug: "capitolo-1" },
+        { id: 2, title: "caoitolo 2", slug: "capitolo-2" }
+    ]
+});
+
+afterEach(() => {
+    posts = [];
+});
+
 // function manipoliation array
 describe('manipolazione array', () => {
 
@@ -32,11 +46,7 @@ describe('manipolazione array', () => {
 
     // SNACK 7
 
-    // CREAZIONE OGGETTO 
-    const posts = [
-        { id: 1, title: "caoitolo 1", slug: "capitolo-1" },
-        { id: 2, title: "caoitolo 2", slug: "capitolo-2" }
-    ]
+
 
     test("la funzione 'findPostId' restituisce il post corretto dato dall'array di post e l'id", () => {
         expect(findPostId(posts, 2)).toEqual({ id: 2, title: "caoitolo 2", slug: "capitolo-2" });
@@ -71,7 +81,15 @@ describe('generazione di slug', () => {
 })
 
 
-
+// SNACK 8 --BONUS
+test('dopo aver aggiunto un post con la funzione "addPost" l arrey post deve contenere un elemento in piu', () => {
+    addPost(posts, { id: 3, title: "caoitolo 3", slug: "capitolo-3" })
+    expect(posts).toHaveLength(3);
+});
+test('dopo aver rimosso il post con la funzione"removePost" l array post deve contenere un alemento in meno', () => {
+    removePost(posts, 2);
+    expect(posts).toHaveLength(1);
+});
 
 
 

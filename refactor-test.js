@@ -50,11 +50,24 @@ const findPostId = (posts, id) => {
     return posts.find(post => post.id === id) || null;
 }
 
+// SNACK 8 --BONUS
+function addPost(posts, post) {
+    posts.push(post);
+}
+
+function removePost(posts, id) {
+    const index = posts.findIndex(post => post.id === id);
+    posts.splice(index, 1);
+
+}
+
 
 module.exports = {
     getInitials,
     createSlug,
     average,
     isPalindroma,
-    findPostId
+    findPostId,
+    addPost,
+    removePost
 }
