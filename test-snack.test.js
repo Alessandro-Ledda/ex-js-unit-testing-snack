@@ -1,5 +1,5 @@
 // import function from refactor
-const { getInitials, createSlug, average } = require("./refactor-test.js");
+const { getInitials, createSlug, average, isPalindroma } = require("./refactor-test.js");
 
 // SNACK 1
 test('la funzione "getInitials" restuisce la prima lettera del nomw completo ', () => {
@@ -28,3 +28,16 @@ test("la funzione 'createSlug' sostituisce gli spazi con '-' ", () => {
     expect(createSlug("ciao sono ale")).toBe("ciao-sono-ale");
 });
 
+// SNACK 5
+
+test('la funzione "isPalindroma" verifica se la stinga è palindroma', () => {
+    expect(isPalindroma("anna")).toBeTruthy();
+    expect(isPalindroma("anna ")).toBeTruthy();
+    expect(isPalindroma("casa")).toBeFalsy();
+})
+
+// SNACK 6
+test('la funzione "createSlug" lanci aun errore se l astringa non è valida', () => {
+    expect(() => createSlug("")).toThrow("titolo non valido");
+    expect(() => createSlug(null)).toThrow("titolo non valido");
+});

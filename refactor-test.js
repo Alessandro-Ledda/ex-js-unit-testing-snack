@@ -4,8 +4,13 @@ const getInitials = (string) => {
     return `${nome.charAt(0).toUpperCase()}.${cognome.charAt(0).toUpperCase()}`;
 }
 
-// SNACK 2 / SNACK 4 (replaceAll)
+// SNACK 2 / SNACK 4 (replaceAll) SNACK 6 (SE SRINGA è valida)
 const createSlug = (str) => {
+    // se stringa non è valida
+    if (!str) {
+        throw new Error("titolo non valido")
+    }
+
     return str.toLowerCase().replaceAll(" ", "-");
 }
 
@@ -21,11 +26,16 @@ const average = (numeri) => {
 }
 
 
-// SNACK 4
+// SNACK 5
+const isPalindroma = (string) => {
+    const stringaInversa = string.trim().split("").reverse().join("");
+    return string.trim() === stringaInversa
+}
 
 
 module.exports = {
     getInitials,
     createSlug,
-    average
+    average,
+    isPalindroma
 }
