@@ -91,6 +91,20 @@ test('dopo aver rimosso il post con la funzione"removePost" l array post deve co
     expect(posts).toHaveLength(1);
 });
 
+// SNACK 9 --BONUS
+test('la funzione "addPost" deve lanciare un errore nel caso in cui l id o uno slug e gia presente', () => {
+
+    expect(() => addPost(posts, { id: 2, title: "caoitolo 4", slug: "capitolo-4" })).toThrow('id gia presente');
+    expect(() => addPost(posts, { id: 3, title: "caoitolo 3", slug: "capitolo-1" })).toThrow('slug gia presente');
+})
+
+// SNACK 10--BONUS
+test('la funzione "createSlug"incrementa di 1 se lo slug e gia presente nel caso in cui viene passato un array come secondo argomento', () => {
+    expect(createSlug("capitolo 1", posts)).toBe("capitolo-1-1");
+    addPost(posts, { id: 3, title: "capitolo 3", slug: createSlug("capitolo 3", posts) });
+    expect(posts[posts.length - 1].slug).toBe("capitolo-3-1")
+})
+
 
 
 

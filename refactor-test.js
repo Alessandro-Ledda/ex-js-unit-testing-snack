@@ -4,14 +4,23 @@ const getInitials = (string) => {
     return `${nome.charAt(0).toUpperCase()}.${cognome.charAt(0).toUpperCase()}`;
 }
 
-// SNACK 2 / SNACK 4 (replaceAll) SNACK 6 (SE SRINGA è valida)
-const createSlug = (str) => {
+// SNACK 2 / SNACK 4 (replaceAll) SNACK 6 (SE SRINGA è valida) / SNACK 10 
+const createSlug = (str, posts) => {
     // se stringa non è valida
     if (!str) {
         throw new Error("titolo non valido")
     }
+    let slug = str.toLowerCase().replaceAll(" ", "-");
+    if (posts) {
+        for (let i = 0; i < posts.length; i++) {
+            const post = posts[i];
+            if (post.slug === slug) {
+                return slug + "-1";
+            }
+        }
+    }
 
-    return str.toLowerCase().replaceAll(" ", "-");
+    return slug;
 }
 
 // SNACK 3
@@ -52,6 +61,15 @@ const findPostId = (posts, id) => {
 
 // SNACK 8 --BONUS
 function addPost(posts, post) {
+    const ids = posts.map(post => post.id);
+    if (ids.includes(post.id)) {
+        throw new Error("id gia presente");
+    }
+
+    const slugs = posts.map(post => post.slug);
+    if (slugs.includes(post.slug)) {
+        throw new Error('slug gia presente')
+    }
     posts.push(post);
 }
 
